@@ -177,18 +177,18 @@ export async function createPullRequest(inputs: Inputs): Promise<void> {
     )
     core.endGroup()
 
-    if (['created', 'updated'].includes(result.action)) {
-      // The branch was created or updated
-      core.startGroup(
-        `Pushing pull request branch to '${branchRemoteName}/${inputs.branch}'`
-      )
-      await git.push([
-        '--force-with-lease',
-        branchRemoteName,
-        `HEAD:refs/heads/${inputs.branch}`
-      ])
-      core.endGroup()
-    }
+    // if (['created', 'updated'].includes(result.action)) {
+    //   // The branch was created or updated
+    //   core.startGroup(
+    //     `Pushing pull request branch to '${branchRemoteName}/${inputs.branch}'`
+    //   )
+    //   await git.push([
+    //     '--force-with-lease',
+    //     branchRemoteName,
+    //     `HEAD:refs/heads/${inputs.branch}`
+    //   ])
+    //   core.endGroup()
+    // }
 
     // Set the base. It would have been '' if not specified as an input
     inputs.base = result.base
